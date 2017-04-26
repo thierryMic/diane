@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div class="listings">
+    {% for p in paintings %}
+        <div class="lrow">
+            <div class="listing">
+                <div class="listing-text">
+                    <div class="listing-title">
+                        <span>{{p.title}}</span>
+                    </div>
+
+                    <div class="listing-details">
+                        <div class=listing-row>
+                            <label>Body of work</label>
+                            : {{p.gallery.name}}
+                        </div>
+
+                        <div class=listing-row>
+                            <label>Media</label>
+                            : {{p.medium}}
+                        </div>
+
+                        <div class=listing-row>
+                            <label>Dimensions</label>
+                            : {{p.height}}cm X {{p.width}}cm
+                        </div>
+
+                        <div class=listing-row>
+                            <label class="listing-details-label">Price</label>
+                            : {{"{:,}".format(p.price)}} aud
+                        </div>
+                    </div>
+                </div>
+
+                <div class="listing-thumb">
+                    <img class="listing-img" src="{{url_for('static', filename='img/%s' % p.image)}}">
+                </div>
+            </div>
+            <hr>
+        </div>
+    {% endfor %}
+    </div>
+{% endblock content %}
+
+
+

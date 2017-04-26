@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="row g-row">
+        {% for g in galleries %}
+            <a class="box" href="{{url_for('gallery', galleryId=g.galleryId)}}">
+                <div class="frame">
+                    <img class="painting" src="{{url_for('static', filename=g.image)}}">
+                </div>
+                <div class="painting-text"> {{g.name}} </div>
+
+            </a>
+        {% endfor %}
+
+    </div>
+{% endblock content %}

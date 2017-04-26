@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Diane Withers</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+        <meta name="Item catalog" content="A list of items by category">
+
+        <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/style.css')}}">
+<!--
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="{{url_for('static', filename='js/app.js')}}"></script> -->
+    </head>
+
+<body>
+
+    <div class="container">
+
+        <!-- HEADER -->
+        <header class="header">
+            <a class="name" href="{{url_for('index')}}">
+                <div id="diane">Diane</div>
+                <div id="withers">Withers</div>
+            </a>
+
+            <div class="hamburger" onclick="toggleNav()"">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
+                    <path d="M2 6h20v3H2zm0 5h20v3H2zm0 5h20v3H2z" />
+                </svg>
+            </div>
+
+            <div id="nav">
+                <div class="dropdown">
+                    <li id="gallery-link">
+                    <a class="nav-option" href="{{url_for('works')}}">Gallery</a>
+                     <div class="dropdown-content">
+                        {% for g in galleries%}
+                            <a class="nav-sub-option"
+                                href="{{url_for('gallery', galleryId=g.galleryId)}}">
+                                {{g.name}}
+                            </a>
+                        {% endfor %}
+                    </div>
+                    </li>
+                </div>
+
+                <a class="nav-option" href="{{url_for('prices')}}">Buy</a>
+                <a class="nav-option" href="{{url_for('about')}}">Meet Diane</a>
+            </div>
+        </header>
+
+        <div class="content">
+            <div class="title">{{title}}</div>
+            {% block content %}
+            {% endblock content %}
+        </div>
+
+
+    </div>
+
+
+</body>
+
+<script src="{{url_for('static', filename='js/libs/knockout-3.4.1.js')}}"></script>
+<script src="{{url_for('static', filename='js/libs/jquery.min.js')}}"></script>
+<script src="{{url_for('static', filename='js/app.js')}}"></script>
+
+</html>
+
+
+
