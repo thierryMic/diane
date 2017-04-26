@@ -12,6 +12,7 @@
   },
   "devDependencies": {
     "cssnano": "^3.10.0",
+    "grunt-contrib-clean": "^1.1.0",
     "grunt-contrib-cssmin": "^2.1.0",
     "grunt-cssnano": "^2.1.0",
     "grunt-responsive-images": "^1.10.1",

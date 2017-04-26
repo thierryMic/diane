@@ -37,40 +37,34 @@ module.exports = function(grunt) {
         },
 
 
+          /* Clear out the images directory if it exists */
+        clean: {
+            dev: {
+                src: [img],
+            },
+        },
+
         responsive_images: {
           dev: {
             options: {
               engine: 'gm',
+              aspectRatio: false,
+              upscale: true,
               sizes:[{
                 name: 'small',
                 width: '200px',
-                upscale: 'true',
-                quality: 40
-              },{
-                name: 'small2x',
-                width: '400px',
-                upscale: 'true',
+                height: '200px',
                 quality: 40
               },{
                 name: 'medium',
-                width: '300px',
-                upscale: 'true',
-                quality: 50
-              },{
-                name: 'medium2x',
-                width: '600px',
-                upscale: 'true',
+                width: '400px',
+                height: '400px',
                 quality: 50
               },{
                 name: 'large',
-                width: '500px',
-                upscale: 'true',
-                quality: 60
-              },{
-                name: 'large2x',
-                width: '1000px',
-                upscale: 'true',
-                quality: 70
+                width: '600px',
+                height: '600px',
+                quality: 50
               }]
             },
 
@@ -93,5 +87,6 @@ module.exports = function(grunt) {
 
     require('load-grunt-tasks')(grunt);
     grunt.registerTask('default', ['csslint', 'postcss', 'responsive_images']);
+    grunt.registerTask('images', ['clean', 'responsive_images']);
 
 };

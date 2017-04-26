@@ -6,29 +6,15 @@
         {% for p in paintings %}
             <div class="gal-container" onclick="toggleFull(this);">
                 <a class="gal-polaroid" href="#">
-
-                    <picture>
-                        <source
-                            media="(max-width: 350px)"
-                            srcset="{{url_for('static', filename='img/%s' % p.image)}}-small,
-                                    {{url_for('static', filename='img/%s' % p.image)}}-small2x.jpg 2x"
-                        >
-
-                        <source
-                            media="(min-width: 351px) and (max-width: 900px)"
-                            srcset="{{url_for('static', filename='img/%s' % p.image)}}-medium.jpg,
-                                    {{url_for('static', filename='img/%s' % p.image)}}-medium.jpg 2x"
-                        >
-
-                        <source
-                            media="(min-width: 901px)"
-                            srcset="{{url_for('static', filename='img/%s' % p.image)}}-large.jpg,
-                                    {{url_for('static', filename='img/%s' % p.image)}}-large2x.jpg 2x"
-                        >
-
                         <img class="gal-pic"
-                             src="{{url_for('static', filename='img/%s' % p.image)}}-large.jpg">
-                    </picture>
+                             src="{{url_for('static', filename='img/%s' % p.image)}}-small.jpg"
+                             srcset="{{url_for('static', filename='img/%s' % p.image)}}-small.jpg 200w,
+                                     {{url_for('static', filename='img/%s' % p.image)}}-medium.jpg 400w,
+                                     {{url_for('static', filename='img/%s' % p.image)}}-large.jpg 600w"
+                             sizes="(orientation: landscape) calc(85vw * .333 - 84px),
+                                    (orientation: portrait) and (min-width: 750px) calc(85vw * .5 - 56px),
+                                    calc(85vw - 28px)"
+                             >
                     <p class="gal-polaroid-title">{{p.title}}</p>
                 </a>
 
