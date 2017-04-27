@@ -100,6 +100,14 @@ def about():
 
 
 
+
+@app.route('/painting/<int:paintingId>')
+def painting(paintingId):
+
+    painting = getOne(Painting, "paintingId", paintingId)
+    return render('painting.html', p=painting)
+
+
 def startServer():
 
     app.secret_key = 'super_secret_key'

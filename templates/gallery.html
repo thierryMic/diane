@@ -1,32 +1,25 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <!-- <div class="gallery-title">{{gallery}}</div> -->
     <div class="gal-thumbs">
         {% for p in paintings %}
-            <div class="gal-container" onclick="toggleFull(this);">
-                <a class="gal-polaroid" href="#">
-                        <img class="gal-pic"
-                             src="{{url_for('static', filename='img/%s' % p.image)}}-small.jpg"
-                             srcset="{{url_for('static', filename='img/%s' % p.image)}}-small.jpg 200w,
-                                     {{url_for('static', filename='img/%s' % p.image)}}-medium.jpg 400w,
-                                     {{url_for('static', filename='img/%s' % p.image)}}-large.jpg 600w"
-                             sizes="(orientation: landscape) calc(85vw * .333 - 84px),
-                                    (orientation: portrait) and (min-width: 750px) calc(85vw * .5 - 56px),
-                                    calc(85vw - 28px)"
-                             >
+            <div class="gal-container">
+                <a class="gal-polaroid"
+                    href="{{url_for('painting', paintingId=p.paintingId)}}"
+                >
+
+
+                    <img class="gal-pic"
+                     src="{{url_for('static', filename='img/%s' % p.image)}}-sqmedium.jpg"
+                     srcset="{{url_for('static', filename='img/%s' % p.image)}}-sqsmall.jpg 200w,
+                             {{url_for('static', filename='img/%s' % p.image)}}-sqmedium.jpg 400w,
+                             {{url_for('static', filename='img/%s' % p.image)}}-sqlarge.jpg 600w"
+                     sizes="(orientation: landscape) calc(85vw * .333 - 84px),
+                            (orientation: portrait) and (min-width: 750px) calc(85vw * .5 - 56px),
+                            calc(85vw - 28px)"
+                    >
                     <p class="gal-polaroid-title">{{p.title}}</p>
                 </a>
-
-               <div class="gal-details">
-                    <div class="gal-details-row">
-                        <p>{{p.title}}</p>
-                    </div>
-
-                    <div class="gal-details-row">
-                        <p>{{p.medium}}, {{p.height}}cm X {{p.width}}cm</p>
-                    </div>
-                </div>
             </div>
         {% endfor %}
     </div>

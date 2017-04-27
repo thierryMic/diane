@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div class="painting">
+
+        <div class="buttonHolder">
+          <a href="#" class="button back"></a>
+          <a href="#" class="button close"></a>
+          <a href="#" class="button next"></a>
+        </div>
+
+        <img class="painting-pic"
+             src="{{url_for('static', filename='img/%s' % p.image)}}-small.jpg"
+             srcset="{{url_for('static', filename='img/%s' % p.image)}}-small.jpg 600w,
+                     {{url_for('static', filename='img/%s' % p.image)}}-medium.jpg 1200w,
+                     {{url_for('static', filename='img/%s' % p.image)}}-large.jpg 2400w"
+             sizes="(orientation: portrait) 100vw, (orientation: landscape) 70vw"
+        >
+
+        <div class="painting-details">
+            <div class="painting-details-row">
+                <p>{{p.title}}</p>
+            </div>
+
+            <div class="painting-details-row">
+                <p>{{p.medium}}, {{p.height}}cm X {{p.width}}cm</p>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

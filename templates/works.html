@@ -5,9 +5,9 @@
         {% for g in galleries %}
             <a class="box" href="{{url_for('gallery', galleryId=g.galleryId)}}">
                 <div class="frame">
-                    <img class="painting" src="{{url_for('static', filename=g.image)}}">
+                    <img class="work" src="{{url_for('static', filename=g.image)}}">
                 </div>
-                <div class="painting-text"> {{g.name}} </div>
+                <div class="work-text"> {{g.name}} </div>
 
             </a>
         {% endfor %}

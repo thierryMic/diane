@@ -238,7 +238,7 @@ p, hr {
 }
 
 
-.painting {
+.work {
     display: flex;
     height: 100%;
     object-fit: contain;
@@ -246,7 +246,7 @@ p, hr {
 }
 
 
-/*SLIDER*/
+/*  Gallery */
 
 .gal-thumbs{
     display: flex;
@@ -258,11 +258,11 @@ p, hr {
 }
 
 
-.gal-pic {
-    /*display: flex;*/
-    height: 85%;
-    /*max-width: 1000px;*/
-    object-fit: contain;
+.gal-container {
+    display: flex;
+    height: 60vh;
+    margin: 0 0 1em 0;
+    padding: 0;
     width: 100%;
 }
 
@@ -273,19 +273,28 @@ p, hr {
     margin: 0 4px 30px;
     padding: 10px 10px .5em;
     text-align: center;
-    width: 96%;
-}
-
-
-.gal-container {
-    display: flex;
-    height: 60vh;
-    margin: 0 0 1em 0;
-    padding: 0;
     width: 100%;
 }
 
-.gal-container.open {
+
+.gal-pic {
+    height: 85%;
+    object-fit: contain;
+    width: 100%;
+}
+
+
+.gal-polaroid-title {
+    font-size: .9em;
+    margin: .5em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+
+.painting {
     background: white;
     display: flex;
     flex-direction: column;
@@ -301,51 +310,18 @@ p, hr {
 }
 
 
-.gal-container.open .gal-polaroid{
-    box-shadow: none;
-    height: calc(100% - 3em);
-    margin: 0;
+.painting-pic {
+    height: calc(100% - 6em);
+    margin: 2.5em 0 0.5em 0;
+    object-fit: contain;
     padding: 0;
     width: 100%;
 }
 
 
-.gal-container.open .gal-polaroid-title {
-    display: none;
-}
-
-
-.gal-container.open .gal-pic {
-    height: 100%;
-
-}
-
-
-.gal-container.open .gal-details {
-    background-color: white;
+.painting-details {
     display: block;
-}
-
-
-.gal-polaroid-title {
-    font-size: .8em;
-    margin: .5em;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-.gal-details {
-    display: none;
-    font-size: .7em;
-    margin: 1em;
-    text-align: left;
-}
-
-.gal-details-row {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+    text-align: center;
 }
 
 
@@ -446,6 +422,95 @@ p, hr {
 }
 
 
+/* Button */
+
+.buttonHolder{
+    position: absolute;
+    top: 3px;
+    right: 1px;
+}
+
+.button{
+    background-image: -webkit-linear-gradient(top, #f4f1ee, #fff);
+    background-image: linear-gradient(top, #f4f1ee, #fff);
+    border-radius: 50%;
+    box-shadow: -2px 3px 10px 0px rgba(0, 0, 0, .3), inset 0px 4px 1px 1px white, inset 0px -3px 1px 1px rgba(204,198,197,.5);
+    float:left;
+    height: 2em;
+    margin: 0 15px 15px 0;
+    position: relative;
+    width: 2em;
+    -webkit-transition: all .1s linear;
+    transition: all .1s linear;
+}
+
+.button:after{
+    color:#e9e6e4;
+    content: "";
+    display: block;
+    font-size: 1em;
+    font-weight: bold;
+    height: 30px;
+    text-decoration: none;
+    text-shadow: 0px -1px 1px #bdb5b4, 1px 1px 1px white;
+    position: absolute;
+    width: 30px;
+
+}
+
+
+.back:after{
+    content: "◄";
+    top: .35em;
+    left: .4em;
+}
+
+.close:after{
+    content: "✖";
+    top: .3em;
+    left: .55em;
+}
+
+.next:after{
+    content: "►";
+    top: .3em;
+    left: .6em;
+}
+
+
+
+.button:hover{
+    background-image: -webkit-linear-gradient(top, #fff, #f4f1ee);
+    background-image: linear-gradient(top, #fff, #f4f1ee);
+    color:#0088cc;
+}
+
+.back:hover:after, .next:hover:after{
+    color:#83d244;
+    text-shadow:0px 0px 6px #83d244;
+}
+
+.close:hover:after{
+    color:#eb2f2f;
+    text-shadow:0px 0px 6px #eb2f2f;
+}
+
+}
+
+
+
+.button:active{
+    background-image: -webkit-linear-gradient(top, #efedec, #f7f4f4);
+    background-image: linear-gradient(top, #efedec, #f7f4f4);
+    box-shadow: 0 3px 5px 0 rgba(0,0,0,.4), inset 0px -3px 1px 1px rgba(204,198,197,.5);
+}
+
+.button:active:after{
+    color:#dbd2d2;
+    text-shadow: 0px -1px 1px #bdb5b4, 0px 1px 1px white;
+}
+
+
 /*
 scroll bar
 copied from https://css-tricks.com/custom-scrollbars-in-webkit/
@@ -493,6 +558,16 @@ copied from https://css-tricks.com/custom-scrollbars-in-webkit/
         width: 33.33%;
     }
 
+    .buttonHolder{
+        right: 2em;
+        width: 2em;
+    }
+
+
+    .painting-pic {
+        height: calc(100% - 4em);
+        margin: .5em 0 ;
+    }
 
 }
 
