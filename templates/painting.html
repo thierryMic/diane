@@ -5,9 +5,9 @@
     <div class="painting">
 
         <div class="buttonHolder">
-          <a href="#" class="button back"></a>
-          <a href="#" class="button close"></a>
-          <a href="#" class="button next"></a>
+          <a href="{{url_for('painting', paintingId=pre)}}" class="button back"></a>
+          <a href="{{url_for('gallery', galleryId=p.galleryId)}}" class="button close"></a>
+          <a href="{{url_for('painting', paintingId=nex)}}" class="button next"></a>
         </div>
 
         <img class="painting-pic"

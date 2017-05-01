@@ -1,17 +1,19 @@
-from werkzeug.contrib.cache import SimpleCache
+
 from flask import Flask, render_template, request, redirect, jsonify, url_for, json
 from flask import session, flash, make_response
 
 from flask_seasurf import SeaSurf
 # from flask.ext.seasurf import SeaSurf
 
+import itertools
+import memcache
 import os
 import sys
 
 from db.database import Member, Gallery, Painting, get, getOne, getTable, getSort
 import login
 
-cache = SimpleCache()
+mc = memcache.Client(['127.0.0.1:11211'], debug=0)
 app = Flask(__name__)
 csrf = SeaSurf(app)
 app.config['UPLOAD_FOLDER'] = '/var/www/itemcatalog/static/img'
@@ -33,14 +35,28 @@ def render(template, **kw):
 
     Returns     : Returns a HTTP response with the relevant template.
     """
-    galleries=cache.get('galleries')
-    if not galleries:
+    # galleries=cache.get('galleries')
+    # if 'galleries' not in locals():
     # if cache.has("galleries"):
-        cache.set('galleries', getTable(Gallery))
-        galleries=cache.get('galleries')
+        # cache.set('galleries', getTable(Gallery))
+    galleries=getTable(Gallery)
 
     loggedIn = 'provider' in session
     return render_template(template, galleries=galleries, loggedIn=loggedIn, **kw)
+
+
+def getGallery(galleryId):
+    key = 'g%s' % galleryId
+    gallery = mc.get(key)
+    if not gallery:
+        print 'adding gallery %s to cache' % galleryId
+        gal = getOne(Gallery, "galleryId", galleryId).name
+        paintings = get(Painting, "galleryId", galleryId)
+        gallery = {'galName':gal, 'paintings':paintings}
+        mc.set(key, gallery)
+        print gallery
+    return gallery
+
 
 
 @app.route('/')
@@ -54,37 +70,14 @@ def index():
 
 @app.route('/works')
 def works():
-
-    """Returns a page with the 10 most recent items."""
     return render('works.html', title="Galleries")
 
 
 @app.route('/gallery/<int:galleryId>')
 def gallery(galleryId):
+    gallery = getGallery(galleryId)
+    return render('gallery.html', title=gallery['galName'], paintings=gallery['paintings'])
 
-    """Returns a page for a specified category.
-
-    Retrieves items belonging to the specified category and renders them as
-    the category's page.
-
-    Args:
-      categoryId : the id of the category to display.
-
-    Returns      : Returns a HTTP response with the category template.
-    """
-
-    paintings = get(Painting, "galleryId", galleryId)
-    gallery = getOne(Gallery, "galleryId", galleryId).name
-    return render('gallery.html', title=gallery, paintings=paintings)
-
-
-@app.route('/paintings/JSON')
-def paintingsJSON():
-
-    """Returns a JSON object representing all the paintings in the database."""
-
-    paintings = getTable(Painting)
-    return jsonify(paintings=[p.serialize for p in paintings])
 
 
 @app.route('/prices/')
@@ -99,13 +92,45 @@ def about():
     return render('about.html', title="About Diane")
 
 
+def getPainting(paintingId):
+    key ='p%s' % paintingId
+    painting = mc.get(key)
+    if not painting:
+        painting = getOne(Painting, "paintingId", paintingId)
+        gallery = getGallery(painting.galleryId)
+        paintings = gallery['paintings']
+
+        for i in range(len(paintings)):
+            if paintings[i].paintingId == paintingId:
+                pre = len(paintings) - 1 if i == 0 else i - 1
+                nex = 0 if i == len(paintings) - 1 else i + 1
+
+        painting = {'pre':paintings[pre].paintingId, 'painting':painting,
+                    'nex':paintings[nex].paintingId}
+        mc.set(key, painting)
+    return painting
 
 
 @app.route('/painting/<int:paintingId>')
 def painting(paintingId):
+    p = getPainting(paintingId)
+    return render('painting.html', p=p['painting'], pre=p['pre'], nex=p['nex'])
 
-    painting = getOne(Painting, "paintingId", paintingId)
-    return render('painting.html', p=painting)
+
+
+
+@app.route('/test/<int:galleryId>')
+def test(galleryId):
+    key = 'gal%s' % galleryId
+    gallery = mc.get(key)
+    if not gallery:
+        print 'adding to cache'
+        gal = getOne(Gallery, "galleryId", galleryId).name
+        paintings = get(Painting, "galleryId", galleryId)
+        gallery = {'galName':gallery, 'paintings':paintings}
+        mc.set(key, gallery)
+
+    return render('gallery.html', title=gallery['galName'], paintings=gallery['paintings'])
 
 
 def startServer():
@@ -113,6 +138,8 @@ def startServer():
     app.secret_key = 'super_secret_key'
     app.debug = True
     app.run(host='0.0.0.0', port=8000)
+
+
 
 if __name__ == '__main__':
     startServer()

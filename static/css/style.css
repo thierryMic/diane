@@ -13,6 +13,7 @@ html, body {
     height: 100%;
     margin: 0;
     width: 100%;
+    overflow: hidden;
 }
 
 
@@ -261,7 +262,7 @@ p, hr {
 .gal-container {
     display: flex;
     height: 60vh;
-    margin: 0 0 1em 0;
+    margin: 0 0 .5em 0;
     padding: 0;
     width: 100%;
 }
@@ -312,7 +313,8 @@ p, hr {
 
 .painting-pic {
     height: calc(100% - 6em);
-    margin: 2.5em 0 0.5em 0;
+    /*margin: 2.5em 0 0.5em 0;*/
+    margin: auto;
     object-fit: contain;
     padding: 0;
     width: 100%;
@@ -426,7 +428,8 @@ p, hr {
 
 .buttonHolder{
     position: absolute;
-    top: 3px;
+    display: flex;
+    top: 1em;
     right: 1px;
 }
 
@@ -447,7 +450,7 @@ p, hr {
 .button:after{
     color:#e9e6e4;
     content: "";
-    display: block;
+    display: flex;
     font-size: 1em;
     font-weight: bold;
     height: 30px;
@@ -559,14 +562,26 @@ copied from https://css-tricks.com/custom-scrollbars-in-webkit/
     }
 
     .buttonHolder{
-        right: 2em;
+        flex-direction: column;
+        right: 1em;
         width: 2em;
     }
 
+    .back {
+        order: 3;
+    }
+
+    .next {
+        order: 1;
+    }
+
+    .close {
+        order: 2;
+    }
 
     .painting-pic {
         height: calc(100% - 4em);
-        margin: .5em 0 ;
+        max-width: 90%;
     }
 
 }
