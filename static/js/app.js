@@ -1,8 +1,31 @@
-
 // image cycling for main page
 var i = 0;
-var alternate = 1
-var mainGal = ["/static/img/Gallery Landscapes-medium.jpg", "/static/img/Gallery WildLife-medium.jpg", "/static/img/Gallery Landscapes-medium.jpg"];
+var alternate = 1;
+var mainGal = [];
+
+
+function getMainGal() {
+    var size;
+    var width =  $('body').width() * window.devicePixelRatio;
+
+    size = '-large';
+    if (width < 800){
+        size = '-small';
+    } else if (width < 1800){
+        size = '-medium';
+    }
+
+    return $.getJSON(
+        mainGalUrl = "http://localhost:8000/mainPaints/JSON/" + size,
+        function(data) {
+            mainGal = data.paintings;
+            $("#pic-top").attr("src", mainGal[0]);
+        }
+    ).error(function (e) {
+        $("#error").append("We could contact the server, please try again later <br>");
+    });
+
+}
 
 function cycleImages(){
     i == mainGal.length - 1 ? i = 0 : i++;
@@ -23,17 +46,7 @@ function cycleImages(){
 
     top.css('zIndex', '1')
     bot.css('zIndex', '0')
-
-    console.log($('body').width())
 }
-
-$(document).ready(function(){
-
-
-    $("#pic-top").attr("src", mainGal[0]);
-    $("#pic-bottom").attr("src", mainGal[1]);
-    setInterval(cycleImages, 6000);
-});
 
 
 // opens the drawer menu
@@ -42,62 +55,25 @@ function toggleNav() {
 }
 
 
-// toggles fullscreen for polaroid element
-function toggleFull (el) {
-  el.classList.toggle("open");
-}
+$(document).ready(function(){
+    getMainGal();
+    $("#pic-bottom").attr("src", mainGal[1]);
+    setInterval(cycleImages, 10000);
+});
 
 
 
+$("#gal-link")[0].addEventListener('touchstart', function(e){
+    firstTap=!$(".dropdown-content").is(":visible");
+    if (firstTap) {
+        $(".dropdown-content").css("display", "flex");
+        e.preventDefault();
+        e.stopPropagation();
+    }
 
-/*
-    By Osvaldas Valutis, www.osvaldas.info
-    Available for use under the MIT License
-*/
-
-
-
-;(function( $, window, document, undefined )
-{
-    $.fn.doubleTapToGo = function( params )
-    {
-        if( !( 'ontouchstart' in window ) &&
-            !navigator.msMaxTouchPoints &&
-            !navigator.userAgent.toLowerCase().match( /windows phone os 7/i ) ) return false;
-
-        this.each( function()
-        {
-            var curItem = false;
-
-            $( this ).on( 'click', function( e )
-            {
-                var item = $( this );
-                if( item[ 0 ] != curItem[ 0 ] )
-                {
-                    e.preventDefault();
-                    curItem = item;
-                }
-            });
-
-            $( document ).on( 'click touchstart MSPointerDown', function( e )
-            {
-                var resetItem = true,
-                    parents   = $( e.target ).parents();
-
-                for( var i = 0; i < parents.length; i++ )
-                    if( parents[ i ] == curItem[ 0 ] )
-                        resetItem = false;
-
-                if( resetItem )
-                    curItem = false;
-            });
-        });
-        return this;
-    };
-})( jQuery, window, document );
+}, false)
 
 
-// init();
-$( '#gallery-link' ).doubleTapToGo();
-// getPaintings();
-
+$(".content")[0].addEventListener('touchstart', function(e){
+        $(".dropdown-content").css("display", "none");
+    }, false)

@@ -22,39 +22,26 @@ app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 
 
 def render(template, **kw):
-
-    """Helper function for rendering templates.
-
-    This function includes a list of categories, a flag to indicate whether a
-    Member is logged, any other keyword arguments passed in by the calling
-    calling function and calls the Flask's render_template function.
-
-    Args:
-      template  : the template we want to render
-      **kw      : a list of keyword arguments to pass to the template.
-
-    Returns     : Returns a HTTP response with the relevant template.
-    """
-    # galleries=cache.get('galleries')
-    # if 'galleries' not in locals():
-    # if cache.has("galleries"):
-        # cache.set('galleries', getTable(Gallery))
-    galleries=getTable(Gallery)
-
     loggedIn = 'provider' in session
-    return render_template(template, galleries=galleries, loggedIn=loggedIn, **kw)
+    return render_template(template, galleries=getGalleries(), loggedIn=loggedIn, **kw)
+
+def getGalleries():
+    key = 'galleries'
+    galleries = mc.get(key)
+    if not galleries:
+        galleries=getTable(Gallery)
+        mc.set(key, galleries)
+    return galleries
 
 
 def getGallery(galleryId):
     key = 'g%s' % galleryId
     gallery = mc.get(key)
     if not gallery:
-        print 'adding gallery %s to cache' % galleryId
         gal = getOne(Gallery, "galleryId", galleryId).name
         paintings = get(Painting, "galleryId", galleryId)
         gallery = {'galName':gal, 'paintings':paintings}
         mc.set(key, gallery)
-        print gallery
     return gallery
 
 
@@ -117,6 +104,11 @@ def painting(paintingId):
     return render('painting.html', p=p['painting'], pre=p['pre'], nex=p['nex'])
 
 
+@app.route('/mainPaints/JSON/<string:size>')
+def mainPaintsJSON(size):
+    print size
+    galleries=getGalleries()
+    return jsonify(paintings=["%s%s.jpg" % (url_for('static',filename=g.image),size) for g in galleries])
 
 
 
