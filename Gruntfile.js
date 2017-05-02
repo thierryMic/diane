@@ -51,6 +51,11 @@ module.exports = function(grunt) {
               aspectRatio: false,
               upscale: true,
               sizes:[{
+                name: 'sqtiny',
+                width: '100px',
+                height: '100px',
+                quality: 40
+              },{
                 name: 'sqsmall',
                 width: '200px',
                 height: '200px',

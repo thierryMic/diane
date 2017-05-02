@@ -119,19 +119,6 @@ def painting(paintingId):
 
 
 
-@app.route('/test/<int:galleryId>')
-def test(galleryId):
-    key = 'gal%s' % galleryId
-    gallery = mc.get(key)
-    if not gallery:
-        print 'adding to cache'
-        gal = getOne(Gallery, "galleryId", galleryId).name
-        paintings = get(Painting, "galleryId", galleryId)
-        gallery = {'galName':gallery, 'paintings':paintings}
-        mc.set(key, gallery)
-
-    return render('gallery.html', title=gallery['galName'], paintings=gallery['paintings'])
-
 
 def startServer():
 

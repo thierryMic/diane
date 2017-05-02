@@ -9,9 +9,6 @@
         <meta name="Item catalog" content="A list of items by category">
 
         <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/style.css')}}">
-<!--
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-        <script src="{{url_for('static', filename='js/app.js')}}"></script> -->
     </head>
 
 <body>
@@ -26,7 +23,7 @@
             </a>
 
             <div class="hamburger" onclick="toggleNav()"">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -7 30 30">
                     <path d="M2 6h20v3H2zm0 5h20v3H2zm0 5h20v3H2z" />
                 </svg>
             </div>
@@ -63,7 +60,6 @@
 
 </body>
 
-<script src="{{url_for('static', filename='js/libs/knockout-3.4.1.js')}}"></script>
 <script src="{{url_for('static', filename='js/libs/jquery.min.js')}}"></script>
 <script src="{{url_for('static', filename='js/app.js')}}"></script>
 

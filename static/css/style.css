@@ -12,14 +12,15 @@ html, body {
     font-family: verdana;
     height: 100%;
     margin: 0;
-    width: 100%;
     overflow: hidden;
+    width: 100%;
 }
 
 
 body, .header, .title {
     background: white;
 }
+
 
 a {
     color: inherit;
@@ -34,7 +35,7 @@ li {
     list-style: none;
 }
 
-p, hr {
+p {
     margin: 0;
 }
 
@@ -66,8 +67,8 @@ p, hr {
 .content {
     display: flex;
     flex-direction: column;
-    height: 90%;
-    margin-top: 3em;
+    height: calc(100% - 4em);
+    margin-top: 3.5em;
     overflow-y: auto;
 }
 
@@ -76,8 +77,7 @@ p, hr {
     color: #9f9696;
     font-size: 1.25em;
     font-style: italic;
-    margin-top: .1em;
-    padding-top: 0.5em;
+    /*margin-top: .1em;*/
     position: absolute;
     width: 100%;
 }
@@ -88,10 +88,8 @@ p, hr {
     align-items: flex-end;
     display: flex;
     flex-wrap: wrap;
-    font-size: 2em;
-    height: 1.75em;
+    height: 3.5em;
     justify-content: space-between;
-    margin-top: 0;
     max-width: 1100px;
     position: absolute;
     width: 85%;
@@ -101,6 +99,7 @@ p, hr {
 /** Name **/
 .name {
     display: flex;
+    font-size: 2.2em;
     width: 85%;
 }
 
@@ -111,13 +110,10 @@ p, hr {
 
 
 /** Hamburger **/
-.hamburger {
-    height: .9em;
-}
 
 .hamburger svg {
     fill: #224e70;
-    width: .9em;
+    width: 2em;
 }
 
 
@@ -126,7 +122,7 @@ p, hr {
 #nav {
     background-color: white;
     display: flex;
-    font-size: .5em;
+    font-size: 1em;
     height: 2.5em;
     margin-top: 2.7em;
     position: absolute;
@@ -181,9 +177,9 @@ p, hr {
 #main-frame {
     align-items: center;
     display: flex;
-    height: 90%;
+    height: calc(100% - 2.7em);
     justify-content: center;
-    margin-top: 1.5em;
+    margin-top: 1.1em;
     position: relative;
     width: 100%;
 }
@@ -191,7 +187,7 @@ p, hr {
 .main-pic {
     height: 100%;
     object-fit: cover;
-    padding: 5px;
+    /*padding: 5px;*/
     position: absolute;
     width: 100%;
 }
@@ -220,7 +216,6 @@ p, hr {
     color:  #9f9696;
     display: flex;
     flex-direction: column;
-    font-size: 1em;
     height: 100%;
     margin: 0 0 1em 0;
     padding: 5px;
@@ -228,13 +223,13 @@ p, hr {
 }
 
 
-.frame {
+/*.frame {
     display: flex;
     margin-bottom: 10px;
     width: 100%;
-}
+}*/
 
-.frame :hover {
+.box :hover {
     box-shadow: 0 15px 15px;
 }
 
@@ -242,6 +237,7 @@ p, hr {
 .work {
     display: flex;
     height: 100%;
+    margin-bottom: .3em;
     object-fit: contain;
     width: 100%;
 }
@@ -249,44 +245,44 @@ p, hr {
 
 /*  Gallery */
 
-.gal-thumbs{
+.gal-thumbs {
     display: flex;
     flex-wrap: wrap;
-    height: 82vh;
-    margin-top: 3em;
+    height: 90%;
+    justify-content: space-between;
+    margin-top: 2em;
     overflow: scroll;
     width: 100%;
+    padding: 4px
 }
+
 
 
 .gal-container {
     display: flex;
-    height: 60vh;
-    margin: 0 0 .5em 0;
-    padding: 0;
+    margin-bottom: .5em;
     width: 100%;
 }
 
 
 .gal-polaroid {
     background: white;
-    box-shadow: 0 4px 6px rgba(0,0,0,.3);
-    margin: 0 4px 30px;
-    padding: 10px 10px .5em;
+    box-shadow: 0 4px 6px 2px rgba(0,0,0,.3);
+    margin: .5em 0 1em 0;
+    padding: 10px 10px .3em;
     text-align: center;
     width: 100%;
 }
 
 
 .gal-pic {
-    height: 85%;
     object-fit: contain;
     width: 100%;
 }
 
 
 .gal-polaroid-title {
-    font-size: .9em;
+    font-size: .7em;
     margin: .5em;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -294,29 +290,27 @@ p, hr {
 }
 
 
-
 .painting {
     background: white;
     display: flex;
     flex-direction: column;
+    font-size: .8em;
     height: 100%;
+    justify-content: center;
     left:0;
     margin: 0;
-    padding: 3px;
     position: absolute;
     top:0;
+    transition: transform 0.4s ease;
     width: 100%;
     z-index: 100;
-    transition: transform 0.4s ease;
 }
 
-
 .painting-pic {
-    height: calc(100% - 6em);
-    /*margin: 2.5em 0 0.5em 0;*/
-    margin: auto;
+    display: flex;
+    max-height: calc(100% - 2.5em);
     object-fit: contain;
-    padding: 0;
+    padding: 3.5em .5em .5em;
     width: 100%;
 }
 
@@ -339,57 +333,61 @@ p, hr {
 }
 
 
-.lrow {
+/*.lrow {
+    display: flex;
     width: 100%;
 }
-
+*/
 
 .listing {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
+    font-size: .7em;
     justify-content: space-between;
-    margin: 1em 0;
+    margin: .3em 0;
     width: 100%;
+    border-bottom-style: solid;
+    border-bottom-color: #9f9696;
+    border-width: 1px;
+    padding: .6em 0;
 }
 
 
 .listing-text {
     display: flex;
     flex-wrap: wrap;
-    width: 70%;
 }
 
 
 .listing-thumb {
     display: flex;
-    height: 4.5em;
-    justify-content: flex-end;
-    width: 4.5em;
+    height: 6.3em;
+    width: 6.3em;
 }
 
 
 .listing-img {
     display: flex;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     width: 100%;
 
 }
 
-
 .listing-title {
     color: #224e70;
     display: flex;
-    font-size: .7em;
     font-weight: bold;
-    justify-content: space-between;
-    width: 70%;
+}
+
+.listing-text, .listing-title {
+   width: calc(100% - 6.5em);
 }
 
 .listing-details {
     display: flex;
     flex-direction: column;
-    font-size: 0.7em;
     margin-top: .5em;
 }
 
@@ -403,9 +401,9 @@ p, hr {
 /* About */
 
 .about {
-    font-size: .8em;
-    height: 90%;
-    margin-top: 3em;
+    height: calc(100% - 2em);
+    margin-top: 1.5em;
+    overflow: scroll;
 }
 
 
@@ -417,7 +415,7 @@ p, hr {
 
 .about-pic {
     float: left;
-    margin: 0 1em 1em 0;
+    margin: 0 1em 0 0;
     max-height: 65vh;
     object-fit: contain;
     width: 45%;
@@ -427,57 +425,59 @@ p, hr {
 /* Button */
 
 .buttonHolder{
-    position: absolute;
     display: flex;
+    justify-content: flex-end;
+    /*margin: .3em 0;*/
+    position: absolute;
+    right: 0;
     top: 1em;
-    right: 1px;
 }
+
 
 .button{
     background-image: -webkit-linear-gradient(top, #f4f1ee, #fff);
     background-image: linear-gradient(top, #f4f1ee, #fff);
     border-radius: 50%;
-    box-shadow: -2px 3px 10px 0px rgba(0, 0, 0, .3), inset 0px 4px 1px 1px white, inset 0px -3px 1px 1px rgba(204,198,197,.5);
+    box-shadow: -2px 3px 10px 0 rgba(0, 0, 0, .3), inset 0 4px 1px 1px white, inset 0 -3px 1px 1px rgba(204,198,197,.5);
     float:left;
     height: 2em;
     margin: 0 15px 15px 0;
     position: relative;
-    width: 2em;
     -webkit-transition: all .1s linear;
     transition: all .1s linear;
+    width: 2em;
 }
+
 
 .button:after{
     color:#e9e6e4;
     content: "";
     display: flex;
-    font-size: 1em;
     font-weight: bold;
     height: 30px;
+    position: absolute;
     text-decoration: none;
     text-shadow: 0px -1px 1px #bdb5b4, 1px 1px 1px white;
-    position: absolute;
     width: 30px;
-
 }
 
 
 .back:after{
     content: "◄";
-    top: .35em;
     left: .4em;
+    top: .35em;
 }
 
 .close:after{
     content: "✖";
-    top: .3em;
     left: .55em;
+    top: .3em;
 }
 
 .next:after{
     content: "►";
-    top: .3em;
     left: .6em;
+    top: .3em;
 }
 
 
@@ -490,27 +490,23 @@ p, hr {
 
 .back:hover:after, .next:hover:after{
     color:#83d244;
-    text-shadow:0px 0px 6px #83d244;
+    text-shadow:0 0 6 #83d244;
 }
 
 .close:hover:after{
     color:#eb2f2f;
-    text-shadow:0px 0px 6px #eb2f2f;
+    text-shadow:0 0 6px #eb2f2f;
 }
-
-}
-
-
 
 .button:active{
     background-image: -webkit-linear-gradient(top, #efedec, #f7f4f4);
     background-image: linear-gradient(top, #efedec, #f7f4f4);
-    box-shadow: 0 3px 5px 0 rgba(0,0,0,.4), inset 0px -3px 1px 1px rgba(204,198,197,.5);
+    box-shadow: 0 3px 5px 0 rgba(0,0,0,.4), inset 0 -3px 1px 1px rgba(204,198,197,.5);
 }
 
 .button:active:after{
     color:#dbd2d2;
-    text-shadow: 0px -1px 1px #bdb5b4, 0px 1px 1px white;
+    text-shadow: 0 -1px 1px #bdb5b4, 0px 1px 1px white;
 }
 
 
@@ -549,22 +545,38 @@ copied from https://css-tricks.com/custom-scrollbars-in-webkit/
 }
 
 
+/* IPAD */
+@media screen and (min-width: 750px) {
+    body {
+        font-size: 1.5em;
+    }
+
+    .name {
+        width: auto;
+    }
+
+    .gal-polaroid {
+        padding: 20px 20px .3em;
+    }
+
+    .gal-container, .listing {
+        width: 45%;
+    }
+
+    .listing {
+        font-size: .5em;
+    }
+}
+
+
 @media screen and (orientation: landscape) {
     .box {
         margin: 1em auto;
         max-width: 33%;
     }
 
-
-    .gal-container {
-        height: 90%;
-        width: 33.33%;
-    }
-
     .buttonHolder{
         flex-direction: column;
-        right: 1em;
-        width: 2em;
     }
 
     .back {
@@ -580,51 +592,28 @@ copied from https://css-tricks.com/custom-scrollbars-in-webkit/
     }
 
     .painting-pic {
-        height: calc(100% - 4em);
-        max-width: 90%;
+        padding: 1em .5em .5em;
+    }
+
+    .gal-container {
+        width: 30%;
+    }
+
+    .gal-thumbs:after {
+        content:"";
+        display: block;
+        margin-left: 30% ;
     }
 
 }
 
-/* IPAD */
-@media screen and (min-height: 650px) {
 
-    .header {
-        font-size: 2.2em;
-    }
-
-    .content {
-        margin-top: 3.5em;
-    }
-
-    .about-pic {
-        max-height: 90%;
-        width: 50%;
-    }
-}
-
-
-/* IPAD */
-@media screen and (min-width: 750px) {
-
-    .header {
-        font-size: 3em;
-    }
-
-    .name {
-        width: auto;
-    }
-
-    .content {
-        margin-top: 5em;
-    }
-
+@media screen and (min-width: 900px) {
     .hamburger {
         display: none;
     }
 
     #nav {
-        font-size: .4em;
         height: auto;
         margin-top: 0;
         position: static;
@@ -632,27 +621,6 @@ copied from https://css-tricks.com/custom-scrollbars-in-webkit/
         width: auto;
     }
 
-    .gal-container {
-        height: 40vh;
-        width: 50%;
-    }
-
-
-    .lrow {
-        width: 45%;
-    }
 }
 
 
-
-@media screen and (min-width: 750px) and (orientation: landscape) {
-
-    .gal-container {
-        width: 33.33%;
-    }
-
-    .listing {
-        font-size: 1.3em;
-    }
-
-}

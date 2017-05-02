@@ -24,9 +24,9 @@ def addGallery(name, image):
 
 
 def addGalleries():
-    addGallery(name="Still life", image="img/Gallery StillLife square.jpg")
-    addGallery(name="Wildlife", image="img/Gallery Wildlife square.jpg")
-    addGallery(name="Landscapes", image="img/Gallery Landscapes square.jpg")
+    addGallery(name="Still life", image="img/Gallery StillLife")
+    addGallery(name="Wildlife", image="img/Gallery Wildlife")
+    addGallery(name="Landscapes", image="img/Gallery Landscapes")
 
 
 

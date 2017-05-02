@@ -2,7 +2,7 @@
 // image cycling for main page
 var i = 0;
 var alternate = 1
-var mainGal = ["/static/img/Landscape 3.jpg", "/static/img/StillLife 6.jpg", "/static/img/Wildlife Burmese Tiger.jpg"];
+var mainGal = ["/static/img/Gallery Landscapes-medium.jpg", "/static/img/Gallery WildLife-medium.jpg", "/static/img/Gallery Landscapes-medium.jpg"];
 
 function cycleImages(){
     i == mainGal.length - 1 ? i = 0 : i++;
@@ -20,13 +20,16 @@ function cycleImages(){
     bot.attr("src", mainGal[i]);
     top.fadeOut(4000);
     bot.fadeIn(5000);
-    // window.setTimeout(5500);
+
     top.css('zIndex', '1')
     bot.css('zIndex', '0')
 
+    console.log($('body').width())
 }
 
 $(document).ready(function(){
+
+
     $("#pic-top").attr("src", mainGal[0]);
     $("#pic-bottom").attr("src", mainGal[1]);
     setInterval(cycleImages, 6000);

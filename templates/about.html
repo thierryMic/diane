@@ -5,7 +5,14 @@
     <div class="about">
         <div class="row">
             <p>
-                <img class="about-pic" src="{{url_for('static', filename='img/about.jpg')}}">
+
+                <img class="about-pic"
+                 src="{{url_for('static', filename='img/about')}}-medium.jpg"
+                 srcset="{{url_for('static', filename='img/about')}}-small.jpg 600w,
+                         {{url_for('static', filename='img/about')}}-medium.jpg 1200w,
+                         {{url_for('static', filename='img/about')}}-large.jpg 2400w"
+                 sizes="45%"
+                >
 
                 Born in 1942 and raised in Williamstown, Victoria, Diane started her career as a
                 secondary teacher specialising in Geography and French. A life of many highlights

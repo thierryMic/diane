@@ -4,7 +4,7 @@
 
     <div class="listings">
     {% for p in paintings %}
-        <div class="lrow">
+        <!-- <div class="lrow"> -->
             <div class="listing">
                 <div class="listing-text">
                     <div class="listing-title">
@@ -35,11 +35,12 @@
                 </div>
 
                 <div class="listing-thumb">
-                    <img class="listing-img" src="{{url_for('static', filename='img/%s' % p.image)}}">
+                    <img class="listing-img" src="{{url_for('static', filename='img/%s' % p.image)}}-sqtiny.jpg">
                 </div>
             </div>
-            <hr>
-        </div>
+
+
+        <!-- </div> -->
     {% endfor %}
     </div>
 {% endblock content %}
