@@ -4,15 +4,27 @@ module.exports = function(grunt) {
     var prod = 'prod/';
     var js = 'static/js/'
     var css = 'static/css/'
+    var tem = 'templates/'
     var imgSrc = 'static/imgSrc/'
     var img = 'static/img/'
+    var db = 'db/'
 
 
     grunt.initConfig({
+
+        // Clear out the images directory if it exists
+        clean: {
+            dev: {
+                src: [prod],
+            },
+        },
+
+
         //JS-Linter
         jshint: {
             all: [js + '*.js']
         },
+
 
         // css-linter
         csslint: {
@@ -24,12 +36,13 @@ module.exports = function(grunt) {
             }
         },
 
+
         //Minify js
         uglify: {
             my_target: {
                 files: {
-                    // 'prod/static/js/app.js': ['static/js/app.js']
-                    prod + js + 'app.js': [js + '*.js']
+                    'prod/static/js/app.js': ['static/js/app.js']
+                    // prod + js + 'app.js': [js + '*.js']
                 }
             }
         },
@@ -52,12 +65,24 @@ module.exports = function(grunt) {
         },
 
 
-          /* Clear out the images directory if it exists */
-        clean: {
-            dev: {
-                src: [img],
+        // html minifyer
+        htmlmin: {
+            dist: {
+                options: {
+                    removeComments: true,
+                    collapseWhitespace: true
+                },
             },
+            dev: {
+                files: [{
+                    expand: true,
+                    cwd: tem,
+                    src: ['**/*.html'],
+                    dest: prod + tem
+                }]
+            }
         },
+
 
         responsive_images: {
           dev: {
@@ -109,19 +134,32 @@ module.exports = function(grunt) {
               expand: true,
               src: ['*.{gif,jpg,png}'],
               cwd: imgSrc,
-              dest: img
+              dest: prod + img
             }]
           }
         },
 
 
+        /* Copy the "fixed" images that don't go through processing into the images/directory */
+        copy: {
+          main: {
+            files: [
+                {expand: true, src: db + '*.*', dest: prod},
+                {expand: true, src: '*.*', dest: prod},
+            ]
+          },
+        },
+
 
     });
 
     require('load-grunt-tasks')(grunt);
-    grunt.registerTask('default', ['csslint', 'postcss', 'responsive_images']);
+    grunt.registerTask('default', ['clean', 'jshint', 'csslint', 'uglify', 'postcss', 'htmlmin',
+                                    'responsive_images', 'copy']);
     grunt.registerTask('images', ['clean', 'responsive_images']);
     grunt.registerTask('lint', ['jshint', 'csslint']);
     grunt.registerTask('js', ['jshint', 'uglify']);
+    grunt.registerTask('html', ['htmlmin']);
+    grunt.registerTask('copymodules', ['copy']);
 
 };
