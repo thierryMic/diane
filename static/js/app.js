@@ -20,32 +20,35 @@ function getMainGal() {
         function(data) {
             mainGal = data.paintings;
             $("#pic-top").attr("src", mainGal[0]);
-        }
-    ).error(function (e) {
-        $("#error").append("We could contact the server, please try again later <br>");
-    });
-
+        });
 }
 
 function cycleImages(){
-    i == mainGal.length - 1 ? i = 0 : i++;
+    var top;
+    var bot;
+
+    if (i == mainGal.length) {
+        i = 0;
+    } else {
+        i += 1;
+    }
 
     if (alternate==1){
-        var top = $("#pic-top")
-        var bot = $("#pic-bottom")
-        alternate = 2
+        top = $("#pic-top");
+        bot = $("#pic-bottom");
+        alternate = 2;
     } else {
-        var top = $("#pic-bottom")
-        var bot = $("#pic-top")
-        alternate = 1
+        top = $("#pic-bottom");
+        bot = $("#pic-top");
+        alternate = 1;
     }
 
     bot.attr("src", mainGal[i]);
     top.fadeOut(4000);
     bot.fadeIn(5000);
 
-    top.css('zIndex', '1')
-    bot.css('zIndex', '0')
+    top.css('zIndex', '1');
+    bot.css('zIndex', '0');
 }
 
 
@@ -71,9 +74,9 @@ $("#gal-link")[0].addEventListener('touchstart', function(e){
         e.stopPropagation();
     }
 
-}, false)
+}, false);
 
 
 $(".content")[0].addEventListener('touchstart', function(e){
         $(".dropdown-content").css("display", "none");
-    }, false)
+    }, false);

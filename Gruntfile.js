@@ -2,22 +2,37 @@
 module.exports = function(grunt) {
 
     var prod = 'prod/';
+    var js = 'static/js/'
     var css = 'static/css/'
     var imgSrc = 'static/imgSrc/'
     var img = 'static/img/'
 
+
     grunt.initConfig({
+        //JS-Linter
+        jshint: {
+            all: [js + '*.js']
+        },
 
         // css-linter
         csslint: {
-          strict: {
-            options: {
-              important: 2
-            },
+            strict: {
+                options: {
+                    important: 2
+                },
             src: css + '*.css',
-          }
+            }
         },
 
+        //Minify js
+        uglify: {
+            my_target: {
+                files: {
+                    // 'prod/static/js/app.js': ['static/js/app.js']
+                    prod + js + 'app.js': [js + '*.js']
+                }
+            }
+        },
 
         // Post-css prefixes
         // runs autoprefixer and cssnano
@@ -106,5 +121,7 @@ module.exports = function(grunt) {
     require('load-grunt-tasks')(grunt);
     grunt.registerTask('default', ['csslint', 'postcss', 'responsive_images']);
     grunt.registerTask('images', ['clean', 'responsive_images']);
+    grunt.registerTask('lint', ['jshint', 'csslint']);
+    grunt.registerTask('js', ['jshint', 'uglify']);
 
 };

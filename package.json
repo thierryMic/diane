@@ -14,9 +14,13 @@
     "cssnano": "^3.10.0",
     "grunt-contrib-clean": "^1.1.0",
     "grunt-contrib-cssmin": "^2.1.0",
+    "grunt-contrib-htmlmin": "^2.3.0",
+    "grunt-contrib-jshint": "^1.1.0",
+    "grunt-contrib-uglify": "^2.3.0",
     "grunt-cssnano": "^2.1.0",
     "grunt-responsive-images": "^1.10.1",
-    "postcss": "^5.2.17"
+    "postcss": "^5.2.17",
+    "uglify-js": "^2.8.22"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
