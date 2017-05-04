@@ -80,7 +80,7 @@ def getSort(table, sortfield, limit):
 
 
 # creates a database schema and binds a session to it.
-engine = create_engine('postgresql://thierry:rookie@localhost/db')
+engine = create_engine('postgresql://test:test@localhost/db')
 Base.metadata.create_all(engine)
 DBsession = sessionmaker(bind=engine)
 session = DBsession()
