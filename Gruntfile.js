@@ -53,8 +53,8 @@ module.exports = function(grunt) {
             options: {
               map: true,
               processors: [
-                require('autoprefixer')({browsers: ['last 2 version']}),
-                require('cssnano')()
+                require('autoprefixer')({browsers: ['last 8 versions']}),
+                // require('cssnano')()
               ]
             },
 
@@ -158,6 +158,7 @@ module.exports = function(grunt) {
                                     'responsive_images', 'copy']);
     grunt.registerTask('images', ['clean', 'responsive_images']);
     grunt.registerTask('lint', ['jshint', 'csslint']);
+    grunt.registerTask('css', ['postcss']);
     grunt.registerTask('js', ['jshint', 'uglify']);
     grunt.registerTask('html', ['htmlmin']);
     grunt.registerTask('copymodules', ['copy']);

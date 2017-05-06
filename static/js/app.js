@@ -2,7 +2,7 @@
 var i = 0;
 var alternate = 1;
 var mainGal = [];
-
+var gotoGallery = false;
 
 function getMainGal() {
     var size;
@@ -16,7 +16,7 @@ function getMainGal() {
     }
 
     return $.getJSON(
-        mainGalUrl = "http://localhost:8000/mainPaints/JSON/" + size,
+        mainGalUrl = "http://34.205.41.30/mainPaints/JSON/" + size,
         function(data) {
             mainGal = data.paintings;
             $("#pic-top").attr("src", mainGal[0]);
@@ -36,19 +36,19 @@ function cycleImages(){
     if (alternate==1){
         top = $("#pic-top");
         bot = $("#pic-bottom");
-        alternate = 2;
+        alternate = 1;
     } else {
         top = $("#pic-bottom");
         bot = $("#pic-top");
-        alternate = 1;
+        alternate = 0;
     }
 
     bot.attr("src", mainGal[i]);
     top.fadeOut(4000);
     bot.fadeIn(5000);
 
-    top.css('zIndex', '1');
-    bot.css('zIndex', '0');
+    top.css('zIndex', '2');
+    bot.css('zIndex', '1');
 }
 
 
@@ -65,18 +65,19 @@ $(document).ready(function(){
 });
 
 
-
-$("#gal-link")[0].addEventListener('touchstart', function(e){
-    firstTap=!$(".dropdown-content").is(":visible");
-    if (firstTap) {
-        $(".dropdown-content").css("display", "flex");
+$("#gal-link").bind('touchend', function(e){
+    if (!gotoGallery) {
         e.preventDefault();
         e.stopPropagation();
+        $(".dropdown-content").css("display", "flex");
+        gotoGallery=true;
     }
+});
 
-}, false);
 
-
-$(".content")[0].addEventListener('touchstart', function(e){
+$(".content")[0].addEventListener('touchend', function(e){
         $(".dropdown-content").css("display", "none");
+        gotoGallery=false;
     }, false);
+
+

@@ -108,7 +108,9 @@ def painting(paintingId):
 def mainPaintsJSON(size):
     print size
     galleries=getGalleries()
-    return jsonify(paintings=["%s%s.jpg" % (url_for('static',filename=g.image),size) for g in galleries])
+    return jsonify(paintings=['%s%s.jpg' %
+                              (url_for('static', filename='img/%s' % g.image), size)
+                              for g in galleries])
 
 
 
