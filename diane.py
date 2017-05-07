@@ -25,6 +25,7 @@ def render(template, **kw):
     loggedIn = 'provider' in session
     return render_template(template, galleries=getGalleries(), loggedIn=loggedIn, **kw)
 
+
 def getGalleries():
     key = 'galleries'
     galleries = mc.get(key)
@@ -40,7 +41,8 @@ def getGallery(galleryId):
     if not gallery:
         gal = getOne(Gallery, "galleryId", galleryId).name
         paintings = get(Painting, "galleryId", galleryId)
-        gallery = {'galName':gal, 'paintings':paintings}
+        json = jsonify(paintings=[p.serialize for p in paintings])
+        gallery = {'galName':gal, 'paintings':paintings, 'json':json}
         mc.set(key, gallery)
     return gallery
 
@@ -106,11 +108,16 @@ def painting(paintingId):
 
 @app.route('/mainPaints/JSON/<string:size>')
 def mainPaintsJSON(size):
-    print size
     galleries=getGalleries()
     return jsonify(paintings=['%s%s.jpg' %
                               (url_for('static', filename='img/%s' % g.image), size)
                               for g in galleries])
+
+
+@app.route('/gallery/JSON/<int:galleryId>')
+def galleryJSON(galleryId):
+    gallery = getGallery(galleryId)
+    return gallery['json']
 
 
 

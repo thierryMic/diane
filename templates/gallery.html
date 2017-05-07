@@ -1,13 +1,26 @@
 {% extends "base.html" %}
 
+<!-- src="{{url_for('static', filename='img/%s' % 'Wildlife Eagle on Wing')}}-medium.jpg"> -->
+<!-- src="{{url_for('static', filename='img/%s' % 'Wildlife Leopard')}}-medium.jpg"> -->
 {% block content %}
+    <div id="slider">
+        <div class="slider-close" onclick="toggleSlider()">X</div>
+        <div class="slider-prev slider-button" data-bind="click: $root.prevPic"><</div>
+        <div class="slider-next slider-button" data-bind="click: $root.nextPic">></div>
+
+        <div class="painting" data-bind="with: current()">
+            <img id="gal-pic" class="painting-pic fade-pic" data-bind="attr: {src: imgSrc}">
+            <img id="gal-pic-below" class="painting-pic" src="">
+
+        </div>
+        <div class = "painting-details">detals</div>
+
+    </div>
+
     <div class="gal-thumbs">
         {% for p in paintings %}
             <div class="gal-container">
-                <a class="gal-polaroid"
-                    href="{{url_for('painting', paintingId=p.paintingId)}}">
-
-
+                <a class="gal-polaroid" onclick="toggleSlider('{{p.galleryId}}')">
                     <img class="gal-pic"
                      src="{{url_for('static', filename='img/%s' % p.image)}}-sqmedium.jpg"
                      srcset="{{url_for('static', filename='img/%s' % p.image)}}-sqsmall.jpg 200w,
@@ -23,3 +36,7 @@
         {% endfor %}
     </div>
 {% endblock content %}
+
+{% block scripts %}
+<script src="{{url_for('static', filename='js/slider.js')}}"></script>
+{% endblock scripts %}
