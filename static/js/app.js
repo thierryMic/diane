@@ -3,6 +3,8 @@ var i = 0;
 var alternate = 1;
 var mainGal = [];
 var gotoGallery = false;
+var server = 'http://localhost:8000/'
+// var server = 'http://34.205.41.30/'
 
 function getMainGal() {
     var size;
@@ -16,7 +18,7 @@ function getMainGal() {
     }
 
     return $.getJSON(
-        mainGalUrl = "http://34.205.41.30/mainPaints/JSON/" + size,
+        mainGalUrl = server + "mainPaints/JSON/" + size,
         function(data) {
             mainGal = data.paintings;
             $("#pic-top").attr("src", mainGal[0]);
