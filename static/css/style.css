@@ -341,7 +341,7 @@ p {
 #slider {
     color: #9f9696;
     display: none;
-    background-color: rgba(0, 0, 0, 0.85);
+    background-color: rgba(152, 151, 151, 0.85);
     height: 100%;
     width: 100%;
     animation: fadein 1s;

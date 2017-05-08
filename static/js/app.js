@@ -3,7 +3,7 @@ var i = 0;
 var alternate = 1;
 var mainGal = [];
 var gotoGallery = false;
-var server = 'http://localhost:8000/'
+var server = 'http://localhost:8000/';
 // var size;
 // var server = 'http://34.205.41.30/'
 
@@ -11,11 +11,11 @@ var server = 'http://localhost:8000/'
 function getSize() {
     var width = $('body').width() * window.devicePixelRatio;
 
-    size = '-large';
+    size = 'large';
     if (width < 800){
-        size = '-small';
+        size = 'small';
     } else if (width < 1800){
-        size = '-medium';
+        size = 'medium';
     }
     return size;
 }

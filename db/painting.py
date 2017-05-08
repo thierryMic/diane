@@ -46,7 +46,7 @@ class Painting(Base):
     def serialize(self):
         """Return object data in easily serializeable format"""
         return {
-            'paintindId': self.paintingId,
+            'paintingId': self.paintingId,
             'title': self.title,
             'description': self.description,
             'galleryId': self.galleryId,

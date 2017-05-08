@@ -1,71 +1,60 @@
 var source;
 var size;
+var paintingsDb = [];
 
-function getGallery(id){
+
+
+function getGallery(galId, paintId){
     return $.getJSON(
-        url = server + "gallery/JSON/" + id,
+        url = server + "gallery/JSON/" + galId,
         function(data) {
             size = getSize();
-            console.log(size);
-            source = data.paintings;
-            ko.applyBindings(new ViewModel());
-
+            results = data.paintings;
+            for (var i = 0; i < results.length; i++)
+            {
+                paintingsDb.push(new painting(results[i]));
+            }
+            ko.applyBindings(new ViewModel(paintId));
         });
 }
 
 
-function toggleSlider(galId) {
+function toggleSlider(galId, paintId) {
     document.getElementById("slider").classList.toggle("open");
-    getGallery(galId);
 }
-
 
 
 var painting = function(data) {
     this.title = ko.observable(data.title);
-    // console.log (data.image + '-' + size + '.jpg');
-    this.imgSrc = ko.observable(data.image + size + '.jpg');
+    this.imgSq = ko.observable(data.image + '-sq' + size + '.jpg');
     this.date = ko.observable(data.date);
-}
+};
 
 
-var ViewModel = function() {
+
+
+var ViewModel = function(firstPaintId) {
     var self = this;
     var p = 0;
 
-    this.paintings = ko.observableArray([]);
+    // initialise variables
+    this.paintings = ko.observableArray(paintingsDb);
+    this.current = ko.observable();
+    this.prev = ko.observable();
+    this.next = ko.observable();
 
-    source.forEach(function (item) {
-       self.paintings.push(new painting(item))
-    });
 
-    this.current = ko.observable(this.paintings()[p]);
-
-    this.nextPic = function() {
-        if (p == source.length - 1) {
-            p = 0;
-        } else  {
-            p++;
-        }
-        this.setCurrent(p);
-    };
-
-    this.prevPic = function() {
-        if (p == 0) {
-            p = source.length - 1;
-        } else  {
-            p--;
-        }
-        this.setCurrent(p);
-    };
-
+    // sets the current painting in the slider
     this.setCurrent = function(p) {
-        var c = self.current().imgSrc();
-        self.current(this.paintings()[p]);
-        $("#gal-pic-below").attr("src", c);
-        $("#gal-pic-below").fadeOut(2000);
+        var index = self.paintings().indexOf(p);
+        var prev = (index == 0) ? self.paintings().length - 1 : index - 1;
+        var next = (index == self.paintings().length - 1 ) ? 0 : index + 1;
+
+        self.current(p);
+        self.prev(self.paintings()[prev]);
+        self.next(self.paintings()[next]);
     };
 
-}
+};
 
-
+getGallery(2);

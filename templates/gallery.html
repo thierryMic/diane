@@ -1,40 +1,37 @@
 {% extends "base.html" %}
 
-<!-- src="{{url_for('static', filename='img/%s' % 'Wildlife Eagle on Wing')}}-medium.jpg"> -->
-<!-- src="{{url_for('static', filename='img/%s' % 'Wildlife Leopard')}}-medium.jpg"> -->
+
 {% block content %}
     <div id="slider">
         <div class="slider-close" onclick="toggleSlider()">X</div>
-        <div class="slider-prev slider-button" data-bind="click: $root.prevPic"><</div>
-        <div class="slider-next slider-button" data-bind="click: $root.nextPic">></div>
 
-        <div class="painting" data-bind="with: current()">
-            <img id="gal-pic" class="painting-pic fade-pic" data-bind="attr: {src: imgSrc}">
-            <img id="gal-pic-below" class="painting-pic" src="">
-
+        <div class="slider-prev slider-button" data-bind="with: prev">
+            <span data-bind="click: $root.setCurrent, text: '<'"></span>
         </div>
+
+        <div class="slider-next slider-button" data-bind="with: next">
+            <span data-bind="click: $root.setCurrent, text: '>'"></span>
+        </div>
+
+        <div class="painting" data-bind="with: current">
+            <img id="gal-pic" class="painting-pic fade-pic" data-bind="attr: {src: imgSq}">
+            <img id="gal-pic-below" class="painting-pic" src="">
+        </div>
+
         <div class = "painting-details">detals</div>
 
     </div>
 
-    <div class="gal-thumbs">
-        {% for p in paintings %}
-            <div class="gal-container">
-                <a class="gal-polaroid" onclick="toggleSlider('{{p.galleryId}}')">
-                    <img class="gal-pic"
-                     src="{{url_for('static', filename='img/%s' % p.image)}}-sqmedium.jpg"
-                     srcset="{{url_for('static', filename='img/%s' % p.image)}}-sqsmall.jpg 200w,
-                             {{url_for('static', filename='img/%s' % p.image)}}-sqmedium.jpg 400w,
-                             {{url_for('static', filename='img/%s' % p.image)}}-sqlarge.jpg 600w"
-                     sizes="(orientation: landscape) calc(85vw * .333 - 84px),
-                            (orientation: portrait) and (min-width: 750px) calc(85vw * .5 - 56px),
-                            calc(85vw - 28px)"
-                    >
-                    <p class="gal-polaroid-title">{{p.title}}</p>
-                </a>
-            </div>
-        {% endfor %}
+
+    <div class="gal-thumbs" data-bind="foreach: paintings">
+        <div class="gal-container">
+            <a class="gal-polaroid" data-bind="click: $root.setCurrent" onclick="toggleSlider()">
+                <img class="gal-pic" data-bind="attr: {src: imgSq}">
+            </a>
+        </div>
     </div>
+
+
 {% endblock content %}
 
 {% block scripts %}
