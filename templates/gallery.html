@@ -14,11 +14,26 @@
         </div>
 
         <div class="painting" data-bind="with: current">
-            <img id="gal-pic" class="painting-pic fade-pic" data-bind="attr: {src: imgSq}">
-            <img id="gal-pic-below" class="painting-pic" src="">
+                <img class="painting-pic fade-pic" data-bind="attr: {src: img}">
+                <div
+                     data-bind="click: $root.toggleDetails,
+                                css: {'painting-details':true,
+                                      'painting-details-open':$root.showDetails}">
+
+                    <div class="painting-details-row">•••</div>
+                    <div class="painting-details-row">
+                        <p data-bind="text: title"></p>
+                    </div>
+                    <div class="painting-details-row">
+                        <p data-bind="text: medium"></p>
+                    </div>
+                    <div class="painting-details-row">
+                        <p data-bind="text: dimensions"></p>
+                    </div>
+                </div>
         </div>
 
-        <div class = "painting-details">detals</div>
+
 
     </div>
 
@@ -35,5 +50,6 @@
 {% endblock content %}
 
 {% block scripts %}
+<script src=https://ajax.aspnetcdn.com/ajax/knockout/knockout-3.4.2.js></script>
 <script src="{{url_for('static', filename='js/slider.js')}}"></script>
 {% endblock scripts %}

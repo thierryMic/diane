@@ -41,8 +41,8 @@ module.exports = function(grunt) {
         uglify: {
             my_target: {
                 files: {
-                    'prod/static/js/app.js': ['static/js/app.js']
-                    // prod + js + 'app.js': [js + '*.js']
+                    'prod/static/js/app.js': ['static/js/app.js'],
+                    'prod/static/js/slider.js': ['static/js/slider.js']
                 }
             }
         },
@@ -54,7 +54,7 @@ module.exports = function(grunt) {
               map: true,
               processors: [
                 require('autoprefixer')({browsers: ['last 8 versions']}),
-                // require('cssnano')()
+                require('cssnano')()
               ]
             },
 

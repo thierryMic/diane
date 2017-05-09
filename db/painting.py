@@ -46,18 +46,18 @@ class Painting(Base):
     def serialize(self):
         """Return object data in easily serializeable format"""
         return {
-            'paintingId': self.paintingId,
+            'paintingId': str(self.paintingId),
             'title': self.title,
             'description': self.description,
-            'galleryId': self.galleryId,
+            'galleryId': str(self.galleryId),
             'paintingDate': self.paintingDate.strftime("%B %Y"),
             # 'memberId': self.memberId,
             'image': url_for('static', filename="img/%s" % self.image),
             'medium': self.medium,
-            'height': self.height,
-            'width': self.width,
-            'sold': self.sold,
-            'price': self.price,
+            'height': str(self.height),
+            'width': str(self.width),
+            'sold': str(self.sold),
+            'price': str(self.price),
         }
 
 

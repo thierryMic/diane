@@ -1,9 +1,61 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 1;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+
+
 *{
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     -ms-box-sizing: border-box;
     box-sizing: border-box;
 }
+
 
 
 html, body {
@@ -69,6 +121,8 @@ p {
     height: calc(100% - 4em);
     margin-top: 3.5em;
     overflow-y: auto;
+    /*overflow-x: hidden;*/
+    /*width: 100%;*/
 }
 
 
@@ -78,7 +132,7 @@ p {
     font-style: italic;
     /*margin-top: .1em;*/
     position: absolute;
-    width: 100%;
+    /*width: 100%;*/
 }
 
 
@@ -196,7 +250,6 @@ p {
     height: auto;
     min-width: 100%;
     min-height: 100%;
-
 }
 
 
@@ -260,7 +313,8 @@ p {
     margin-top: 2em;
     overflow: scroll;
     width: 100%;
-    padding: 4px
+    padding: 4px;
+    overflow-x: hidden;
 }
 
 
@@ -283,7 +337,7 @@ p {
 
 
 .gal-pic {
-    object-fit: contain;
+    /*object-fit: contain;*/
     width: 100%;
 }
 
@@ -298,10 +352,13 @@ p {
 
 
 .painting {
-    display: flex;
+    /*display: flex;*/
     /*flex-direction: column;*/
     /*height: calc(100% - 1em);*/
     margin: auto;
+    /*position: relative;*/
+    top: 0;
+    left: 0;
     /*transition: transform 0.4s ease;*/
     /*max-width: calc(100% - 1em);*/
     z-index: 100;
@@ -316,43 +373,78 @@ p {
     right: 0;
     position: absolute;
     margin:auto;
-    max-width: 95%;
-    max-height: 95%;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
 }
 
 .fade-pic {
-    animation: fadein 4s;
+    animation: fadein 3s;
 }
 
 
 .painting-details {
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: none;
     bottom: 0;
-    color: #6eb5e1;
+    color: #8fb0c4;
     display: block;
     font-size: .6em;
+    left: 0;
     position: absolute;
-    text-align: center;
+    text-align: left;
     width: 100%;
     z-index: 1;
+    transform: translate(0px, calc(100% - 2em));
+    transition: all 0.4s ease;
 }
 
+
+.painting-details-open {
+    transform: translate(0px, -0%);
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+
+.show-details {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.painting-details-row {
+    margin-left: .5em;
+}
+
+
+.painting-details-row:first-child, .painting-details-row:last-child{
+    margin-bottom: 1em;
+}
+
+.image {
+    position: relative;
+    width: 100%;
+}
 
 #slider {
     color: #9f9696;
     display: none;
-    background-color: rgba(152, 151, 151, 0.85);
+    /*background-color: rgba(0, 0, 0, 0.5);*/
+    background-color: black;
+    position: absolute;
+    top: 0;
+    left: 0;
     height: 100%;
     width: 100%;
     animation: fadein 1s;
+    overflow: hidden;
+    z-index: 11;
 }
 
 #slider.open {
-    display: flex;
-    left: 0;
+    display: inline-block;
+    /*left: 0;
     position: absolute;
-    top: 0;
-    z-index: 11;
+    top: 0;*/
 }
 
 
@@ -373,7 +465,7 @@ p {
 
 .slider-button:hover {
     color: white;
-    animation: fadein 1s;
+    animation: fadein 2s;
 }
 
 .slider-prev {
@@ -649,9 +741,9 @@ copied from https://css-tricks.com/custom-scrollbars-in-webkit/
         order: 2;
     }
 
-    .painting-pic {
+/*    .painting-pic {
         padding: 1em .5em .5em;
-    }
+    }*/
 
     .gal-container {
         width: 30%;
