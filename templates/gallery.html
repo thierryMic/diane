@@ -14,23 +14,24 @@
         </div>
 
         <div class="painting" data-bind="with: current">
-                <img class="painting-pic fade-pic" data-bind="attr: {src: img}">
-                <div
-                     data-bind="click: $root.toggleDetails,
-                                css: {'painting-details':true,
-                                      'painting-details-open':$root.showDetails}">
+            <img class="painting-pic" onload="fade()" data-bind="attr: {src: img}">
 
-                    <div class="painting-details-row">•••</div>
-                    <div class="painting-details-row">
-                        <p data-bind="text: title"></p>
-                    </div>
-                    <div class="painting-details-row">
-                        <p data-bind="text: medium"></p>
-                    </div>
-                    <div class="painting-details-row">
-                        <p data-bind="text: dimensions"></p>
-                    </div>
+            <div
+                 data-bind="click: $root.toggleDetails,
+                            css: {'painting-details':true,
+                                  'painting-details-open':$root.showDetails}">
+
+                <div class="painting-details-row">•••</div>
+                <div class="painting-details-row">
+                    <p data-bind="text: title"></p>
                 </div>
+                <div class="painting-details-row">
+                    <p data-bind="text: medium"></p>
+                </div>
+                <div class="painting-details-row">
+                    <p data-bind="text: dimensions"></p>
+                </div>
+            </div>
         </div>
 
 

@@ -3,6 +3,9 @@ var size;
 var paintingsDb = [];
 
 
+function fade(img){
+    $(".painting-pic").fadeIn("slow");
+}
 
 function getGallery(galId){
     return $.getJSON(

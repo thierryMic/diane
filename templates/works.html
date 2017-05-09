@@ -4,16 +4,14 @@
     <div class="row g-row">
         {% for g in galleries %}
             <a class="box" href="{{url_for('gallery', galleryId=g.galleryId)}}">
-                <!-- <div class="frame"> -->
-                    <img class="work"
-                     src="{{url_for('static', filename=g.image)}}-sqmedium.jpg"
-                     srcset="{{url_for('static', filename=g.image)}}-sqsmall.jpg 600w,
-                             {{url_for('static', filename=g.image)}}-sqmedium.jpg 1200w,
-                             {{url_for('static', filename=g.image)}}-sqlarge.jpg 2400w"
-                     sizes="45%"
-                    >
 
-                <!-- </div> -->
+                <img class="work"
+                 src="{{url_for('static', filename='img/%s' % g.image)}}-sqmedium.jpg"
+                 srcset="{{url_for('static', filename='img/%s' % g.image)}}-sqsmall.jpg 600w,
+                         {{url_for('static', filename='img/%s' % g.image)}}-sqmedium.jpg 1200w,
+                         {{url_for('static', filename='img/%s' % g.image)}}-sqlarge.jpg 2400w"
+                 sizes="45%"
+                >
                 <div class="work-text"> {{g.name}} </div>
 
             </a>

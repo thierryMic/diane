@@ -65,6 +65,7 @@ html, body {
     margin: 0;
     overflow: hidden;
     width: 100%;
+    -webkit-overflow-scrolling: touch;
 }
 
 
@@ -367,6 +368,7 @@ p {
 
 .painting-pic {
     /*display: flex;*/
+    display: none;
     top: 0;
     bottom: 0;
     left: 0;
@@ -378,9 +380,9 @@ p {
     object-fit: contain;
 }
 
-.fade-pic {
+/*.fade-pic {
     animation: fadein 3s;
-}
+}*/
 
 
 .painting-details {
