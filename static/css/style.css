@@ -96,6 +96,7 @@ p {
 .row {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
     width: 100%;
 }
 
@@ -128,12 +129,14 @@ p {
 
 
 .title {
+    margin-top: .3em;
     color: #9f9696;
     font-size: 1.25em;
     font-style: italic;
     /*margin-top: .1em;*/
     position: absolute;
-    /*width: 100%;*/
+    width: 85%;
+    max-width: 1100px;
 }
 
 
@@ -182,6 +185,7 @@ p {
     left: 0;
     transform: translate(-150%, 0px);
     transition: all 0.4s ease;
+    padding-top: .5em;
     width: 100%;
     z-index: 10;
 }
@@ -560,18 +564,27 @@ p {
 }
 
 
-.about p {
+.about-text {
     margin: 1em 0;
     text-align: justify;
     text-justify: inter-word;
+    line-height: 2em;
+    color: #9f9696;
+    font-family: georgia;
+    font-size: .8em;
+}
+
+.about p {
+    margin-bottom: 1em;
+}
+
+.about-pic-container {
+    margin-top: .5em;
+    width: 100%;
 }
 
 .about-pic {
-    float: left;
-    margin: 0 1em 0 0;
-    max-height: 65vh;
-    object-fit: contain;
-    width: 45%;
+    width: 100%;
 }
 
 
@@ -771,6 +784,15 @@ copied from https://css-tricks.com/custom-scrollbars-in-webkit/
         position: static;
         transform: translate(0, 0);
         width: auto;
+    }
+
+    .about-pic-container {
+        width: 47.5%;
+    }
+
+    .about-text {
+        margin-top: 0;
+        width: 47.5%;
     }
 
 }
