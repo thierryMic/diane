@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 
-{% block content %}
+{% block other %}
     <div id="slider">
         <div class="slider-close" onclick="toggleSlider()">X</div>
 
@@ -34,11 +34,10 @@
             </div>
         </div>
 
-
-
     </div>
+{% endblock other %}
 
-
+{% block content %}
     <div class="gal-thumbs" data-bind="foreach: paintings">
         <div class="gal-container">
             <a class="gal-polaroid" data-bind="click: $root.setCurrent" onclick="toggleSlider()">
@@ -46,7 +45,6 @@
             </a>
         </div>
     </div>
-
 
 {% endblock content %}
 

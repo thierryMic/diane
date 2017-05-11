@@ -54,9 +54,10 @@
             {% endblock content %}
         </div>
 
-
     </div>
 
+    {% block other %}
+    {% endblock other %}
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="{{url_for('static', filename='js/app.js')}}"></script>
