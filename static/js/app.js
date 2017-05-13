@@ -1,5 +1,5 @@
 // image cycling for main page
-var i = 0;
+var i = 1;
 var alternate = 1;
 var mainGal = [];
 var gotoGallery = false;
@@ -25,51 +25,43 @@ function getMainGal() {
         mainGalUrl = server + "mainPaints/JSON/" + getSize(),
         function(data) {
             mainGal = data.paintings;
-            $("#pic-top").attr("src", mainGal[0]);
+            $("#p1").attr("src", mainGal[0]);
+            $("#p2").attr("src", mainGal[1]);
+            setInterval(cycleImages, 4000);
         });
 }
 
 
 function cycleImages(){
-    var top;
-    var bot;
-
-    if (i == mainGal.length) {
-        i = 0;
-    } else {
-        i += 1;
-    }
+    i = (i == mainGal.length - 1) ? 0 : i + 1;
 
     if (alternate==1){
-        top = $("#pic-top");
-        bot = $("#pic-bottom");
-        alternate = 1;
-    } else {
-        top = $("#pic-bottom");
-        bot = $("#pic-top");
+        swapPics($("#p1"),$("#p2"), mainGal[i]);
         alternate = 0;
+    } else {
+        swapPics($("#p2"),$("#p1"),mainGal[i]);
+        alternate = 1;
     }
-
-    bot.attr("src", mainGal[i]);
-    top.fadeOut(4000);
-    bot.fadeIn(5000);
-
-    top.css('zIndex', '2');
-    bot.css('zIndex', '1');
 }
+
+function swapPics(pic1, pic2, src){
+    pic1.fadeOut(2000);
+    pic2.fadeIn(2000);
+    setTimeout (function(){
+        pic1.attr("src", src);
+    }, 3000);
+}
+
+
+$(document).ready(function(){
+    getMainGal();
+});
 
 
 // opens the drawer menu
 function toggleNav() {
     document.getElementById("nav").classList.toggle("open");
 }
-
-
-$(document).ready(function(){
-    getMainGal();
-    $("#pic-bottom").attr("src", mainGal[1]);
-    setInterval(cycleImages, 10000);
-});
 
 
 $("#gal-link").bind('touchend', function(e){
@@ -89,34 +81,8 @@ $(".content")[0].addEventListener('touchend', function(e){
 
 
 
-//SLIDER
-
-// opens the slider
-
-
-function getMainGal() {
-    var size;
-    var width =  $('body').width() * window.devicePixelRatio;
-
-    size = '-large';
-    if (width < 800){
-        size = '-small';
-    } else if (width < 1800){
-        size = '-medium';
-    }
-
-    return $.getJSON(
-        mainGalUrl = server + "mainPaints/JSON/" + size,
-        function(data) {
-            mainGal = data.paintings;
-            $("#pic-top").attr("src", mainGal[0]);
-        });
-}
-
-
 function enquiry(title) {
     var email = 'enquiries@dianewithers.com';
     var subject = title;
-    // var emailBody = '';
     document.location = "mailto:"+email+"?subject="+subject;
 }

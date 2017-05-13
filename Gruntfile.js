@@ -155,7 +155,7 @@ module.exports = function(grunt) {
 
     require('load-grunt-tasks')(grunt);
     grunt.registerTask('default', ['clean', 'jshint', 'csslint', 'uglify', 'postcss', 'htmlmin',
-                                    'responsive_images', 'copy']);
+                                   'copy']);
     grunt.registerTask('images', ['clean', 'responsive_images']);
     grunt.registerTask('lint', ['jshint', 'csslint']);
     grunt.registerTask('css', ['postcss']);

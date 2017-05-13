@@ -112,7 +112,7 @@ def painting(paintingId):
 @app.route('/mainPaints/JSON/<string:size>')
 def mainPaintsJSON(size):
     galleries=getGalleries()
-    return jsonify(paintings=['%s%s.jpg' %
+    return jsonify(paintings=['%s-%s.jpg' %
                               (url_for('static', filename='img/%s' % g.image), size)
                               for g in galleries])
 

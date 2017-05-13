@@ -257,12 +257,14 @@ p {
 }
 
 
-#pic-top {
-    z-index: 1;
+#p1 {
+    /*display: flex;*/
+    /*animation: fadein 4s;*/
+    z-index: 2;
 }
 
-#pic-bottom {
-    z-index: 0;
+#p2 {
+    z-index: 1;
 }
 
 
@@ -552,7 +554,7 @@ p {
 .about {
     height: calc(100% - 4em);
     margin-top: 2em;
-    overflow: hidden;
+    overflow: scroll;
 }
 
 
@@ -682,6 +684,10 @@ copied from https://css-tricks.com/custom-scrollbars-in-webkit/
         position: static;
         transform: translate(0, 0);
         width: auto;
+    }
+
+    .about {
+        overflow: hidden;
     }
 
     .about-pic-container {
