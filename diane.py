@@ -51,10 +51,13 @@ def getGallery(galleryId):
 @app.route('/')
 @app.route('/index/')
 def index():
-
-    """Returns a page with the 10 most recent items."""
     return render('index.html')
 
+
+
+@app.route('/contact/')
+def contact():
+    return render('contact.html')
 
 
 @app.route('/works')

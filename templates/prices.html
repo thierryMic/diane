@@ -4,7 +4,7 @@
 
     <div class="listings">
     {% for p in paintings %}
-            <div class="listing">
+            <div class="listing" onclick="enquiry('{{p.title}}')">
                 <div class="listing-text">
                     <div class="listing-title">
                         <span>{{p.title}}</span>
@@ -37,7 +37,6 @@
                     <img class="listing-img" src="{{url_for('static', filename='img/%s' % p.image)}}-sqtiny.jpg">
                 </div>
             </div>
-
     {% endfor %}
     </div>
 {% endblock content %}

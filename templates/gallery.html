@@ -3,7 +3,9 @@
 
 {% block other %}
     <div id="slider">
-        <div class="slider-close" onclick="toggleSlider()">X</div>
+        <div class="slider-close slider-button" onclick="toggleSlider()">
+            <span>X</span>
+        </div>
 
         <div class="slider-prev slider-button" data-bind="with: prev">
             <span data-bind="click: $root.setCurrent, text: '<'"></span>

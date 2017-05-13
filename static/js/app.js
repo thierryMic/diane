@@ -4,7 +4,6 @@ var alternate = 1;
 var mainGal = [];
 var gotoGallery = false;
 var server = 'http://localhost:8000/';
-// var size;
 // var server = 'http://34.205.41.30/';
 
 
@@ -90,13 +89,6 @@ $(".content")[0].addEventListener('touchend', function(e){
 
 
 
-
-
-
-
-
-
-
 //SLIDER
 
 // opens the slider
@@ -122,3 +114,9 @@ function getMainGal() {
 }
 
 
+function enquiry(title) {
+    var email = 'enquiries@dianewithers.com';
+    var subject = title;
+    // var emailBody = '';
+    document.location = "mailto:"+email+"?subject="+subject;
+}

@@ -357,21 +357,14 @@ p {
 
 
 .painting {
-    /*display: flex;*/
-    /*flex-direction: column;*/
-    /*height: calc(100% - 1em);*/
     margin: auto;
-    /*position: relative;*/
     top: 0;
     left: 0;
-    /*transition: transform 0.4s ease;*/
-    /*max-width: calc(100% - 1em);*/
     z-index: 100;
 }
 
 
 .painting-pic {
-    /*display: flex;*/
     display: none;
     top: 0;
     bottom: 0;
@@ -383,10 +376,6 @@ p {
     max-height: 100%;
     object-fit: contain;
 }
-
-/*.fade-pic {
-    animation: fadein 3s;
-}*/
 
 
 .painting-details {
@@ -434,7 +423,6 @@ p {
 #slider {
     color: #9f9696;
     display: none;
-    /*background-color: rgba(0, 0, 0, 0.5);*/
     background-color: black;
     position: absolute;
     top: 0;
@@ -448,37 +436,36 @@ p {
 
 #slider.open {
     display: inline-block;
-    /*left: 0;
-    position: absolute;
-    top: 0;*/
-}
-
-
-.slider-close {
-    position: absolute;
-    right: 1em;
-    top: 1em;
-    z-index: 102;
 }
 
 .slider-button {
     color: rgba(255, 255, 255, 0.50);
-    font-size: 2em;
     position: absolute;
-    top: 45%;
-    z-index: 101;
+    padding: .5em;
+    height: 2em;
+    width: 2em;
+    z-index: 2;
 }
 
 .slider-button:hover {
     color: white;
-    animation: fadein 2s;
+}
+
+
+.slider-close {
+    content: "X";
+    right: 1em;
+    top: 1em;
 }
 
 .slider-prev {
+    text-align: left;
+    top: 45%;
     left: 0.2em;
 }
 
 .slider-next {
+    top: 45%;
     right: 0.2em;
 }
 
@@ -508,6 +495,11 @@ p {
     border-bottom-color: #9f9696;
     border-width: 1px;
     padding: .6em 0;
+
+}
+
+.listing-text:hover {
+    background-color: #e8ecf5;
 }
 
 
@@ -558,9 +550,9 @@ p {
 /* About */
 
 .about {
-    height: calc(100% - 2em);
+    height: calc(100% - 4em);
     margin-top: 2em;
-    overflow: scroll;
+    overflow: hidden;
 }
 
 
@@ -699,6 +691,8 @@ copied from https://css-tricks.com/custom-scrollbars-in-webkit/
     .about-text {
         margin-top: 0;
         width: 47.5%;
+        height: 80vh;
+        overflow-y: auto;
     }
 
 }
